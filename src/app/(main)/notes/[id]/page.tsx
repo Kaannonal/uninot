@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import PdfViewerWrapper from '@/components/pdf/PdfViewerWrapper'
 import ViewTracker from '@/components/pdf/ViewTracker'
 import DownloadButton from '@/components/pdf/DownloadButton'
+import ReviewSection from '@/components/notes/ReviewSection'
 
 const noteTypeLabels: Record<string, string> = {
   vize: 'Vize', final: 'Final', ozet: 'Özet', formul: 'Formül', diger: 'Diğer',
@@ -46,6 +47,20 @@ export default async function NoteDetailPage({
   const university  = faculty?.universities
   const uploader    = (note.profiles as { full_name: string | null } | null)?.full_name ?? 'Anonim'
 
+  // Kullanıcı bilgisi + yorumlar
+  const { data: { user } } = await supabase.auth.getUser()
+
+  const [{ data: reviews }, { data: myReview }] = await Promise.all([
+    supabase
+      .from('reviews')
+      .select('id, rating, comment, created_at, profiles(full_name)')
+      .eq('note_id', id)
+      .order('created_at', { ascending: false }),
+    user
+      ? supabase.from('reviews').select('rating, comment').eq('note_id', id).eq('user_id', user.id).maybeSingle()
+      : Promise.resolve({ data: null }),
+  ])
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
 
@@ -82,6 +97,9 @@ export default async function NoteDetailPage({
         <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-muted-foreground">
           <span>👁 {note.view_count} görüntülenme</span>
           <span>⬇ {note.download_count} indirme</span>
+          {reviews && reviews.length > 0 && (
+            <span>⭐ {note.avg_rating.toFixed(1)} ({reviews.length} değerlendirme)</span>
+          )}
           {note.page_count && <span>📄 {note.page_count} sayfa</span>}
           <span>👤 {uploader}</span>
           <span>🗓 {new Date(note.created_at).toLocaleDateString('tr-TR')}</span>
@@ -97,6 +115,17 @@ export default async function NoteDetailPage({
       <div className="mt-6 flex justify-center">
         <DownloadButton noteId={note.id} fileUrl={note.file_url} variant="outline" size="lg" label="⬇ PDF'i İndir" />
       </div>
+
+      {/* Değerlendirmeler */}
+      <ReviewSection
+        noteId={note.id}
+        isLoggedIn={!!user}
+        isOwnNote={user?.id === note.user_id}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        initialReviews={(reviews ?? []) as any}
+        existingRating={myReview?.rating ?? 0}
+        existingComment={myReview?.comment ?? ''}
+      />
 
       {/* Görüntüleme süresi takibi (giriş yapmış kullanıcılar için) */}
       <ViewTracker noteId={note.id} />

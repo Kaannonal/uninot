@@ -18,11 +18,19 @@ interface NoteWithMeta extends Note {
       }
     }
   }
+  // Supabase count join — [{ count: N }] formatında gelebilir
+  reviews?: { count: number }[] | { id: string }[]
 }
 
 export default function NoteCard({ note }: { note: NoteWithMeta }) {
   const course = note.courses
   const university = course?.departments?.faculties?.universities?.name
+  // reviews alanı { count } ya da { id } nesnelerinin listesi olabilir
+  const reviewCount = Array.isArray(note.reviews)
+    ? 'count' in (note.reviews[0] ?? {})
+      ? (note.reviews[0] as { count: number }).count
+      : note.reviews.length
+    : 0
 
   return (
     <Link href={`/notes/${note.id}`}>
@@ -48,7 +56,9 @@ export default function NoteCard({ note }: { note: NoteWithMeta }) {
           <div className="mt-3 flex gap-3 text-xs text-gray-500">
             <span>👁 {note.view_count}</span>
             <span>⬇ {note.download_count}</span>
-            {note.avg_rating > 0 && <span>⭐ {note.avg_rating.toFixed(1)}</span>}
+            {note.avg_rating > 0 && (
+              <span>⭐ {note.avg_rating.toFixed(1)}{reviewCount > 0 && ` (${reviewCount})`}</span>
+            )}
             {note.term && <span>📅 {note.term}</span>}
           </div>
         </CardContent>

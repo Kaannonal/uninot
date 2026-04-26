@@ -77,6 +77,7 @@ export default async function HomePage({
     .from('notes')
     .select(`
       *,
+      reviews(count),
       courses (
         code, name,
         departments (
