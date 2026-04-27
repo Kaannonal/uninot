@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
@@ -12,19 +11,21 @@ type PendingNote = Record<string, any>
 export default function AdminNoteList({ initialNotes }: { initialNotes: PendingNote[] }) {
   const [notes, setNotes] = useState(initialNotes)
   const [processing, setProcessing] = useState<string | null>(null)
-  const supabase = createClient()
 
-  const handleAction = async (noteId: string, newStatus: 'approved' | 'rejected') => {
+  const handleAction = async (noteId: string, action: 'approved' | 'rejected') => {
     setProcessing(noteId)
-    const { error } = await supabase
-      .from('notes')
-      .update({ status: newStatus, updated_at: new Date().toISOString() })
-      .eq('id', noteId)
 
-    if (!error) {
+    const res = await fetch(`/api/admin/notes/${noteId}/action`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action }),
+    })
+
+    if (res.ok) {
       setNotes(prev => prev.filter(n => n.id !== noteId))
     } else {
-      alert(`Hata: ${error.message}`)
+      const data = await res.json().catch(() => ({}))
+      alert(`Hata: ${data.error ?? 'Bilinmeyen hata'}`)
     }
     setProcessing(null)
   }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { sendNewComment } from '@/lib/email'
 
 export async function POST(
   req: NextRequest,
@@ -25,7 +26,7 @@ export async function POST(
   // Kendi notuna puan verme kontrolü
   const { data: note } = await supabase
     .from('notes')
-    .select('user_id')
+    .select('user_id, title')
     .eq('id', noteId)
     .single()
 
@@ -59,6 +60,26 @@ export async function POST(
       .update({ avg_rating: Math.round(avg * 10) / 10 })
       .eq('id', noteId)
   }
+
+  // Not sahibine email — fire-and-forget
+  const sendEmail = async () => {
+    try {
+      const { data: { user: owner } } = await adminClient.auth.admin.getUserById(note.user_id)
+      if (!owner?.email) return
+      const { data: reviewer } = await supabase.from('profiles').select('full_name').eq('id', user.id).single()
+      await sendNewComment(
+        owner.email,
+        note.title,
+        noteId,
+        reviewer?.full_name ?? 'Bir kullanıcı',
+        comment?.trim() || null,
+        rating,
+      )
+    } catch (err) {
+      console.error('[email] review email failed:', err)
+    }
+  }
+  sendEmail()
 
   return NextResponse.json({ ok: true })
 }
