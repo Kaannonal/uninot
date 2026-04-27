@@ -2,9 +2,7 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Domain doğrulanana kadar Resend'in sandbox adresini kullan
-// Domain doğrulandıktan sonra 'noreply@notkampus.com' ile değiştir
-const FROM = 'NotKampüs <onboarding@resend.dev>'
+const FROM = 'NotKampüs <noreply@notkampus.com>'
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://notkampus.com'
 
 // ─── HTML template helper ──────────────────────────────────────────────────
