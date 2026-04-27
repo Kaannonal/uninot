@@ -1,4 +1,4 @@
-export const metadata = { title: 'Kullanım Şartları — UniNot' }
+export const metadata = { title: 'Kullanım Şartları — NotKampüs' }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -17,7 +17,7 @@ export default function TermsPage() {
 
       <Section title="1. Genel">
         <p>
-          UniNot&apos;u kullanarak bu şartları kabul etmiş sayılırsınız.
+          NotKampüs&apos;u kullanarak bu şartları kabul etmiş sayılırsınız.
           Platformun amacı, üniversite öğrencilerinin kendi hazırladıkları ders notlarını
           güvenli ve yasal bir şekilde paylaşmasını sağlamaktır.
         </p>
@@ -51,12 +51,12 @@ export default function TermsPage() {
         </ul>
         <p className="mt-2">
           Telif hakkı şikayetleri için:
-          <a href="mailto:iletisim@uninot.com" className="text-blue-600 hover:underline ml-1">iletisim@uninot.com</a>
+          <a href="mailto:iletisim@notkampus.com" className="text-blue-600 hover:underline ml-1">iletisim@notkampus.com</a>
         </p>
       </Section>
 
       <Section title="4. Gelir Paylaşım Sistemi">
-        <p>UniNot, onaylanan notlar için şu gelir paylaşım modelini uygular:</p>
+        <p>NotKampüs, onaylanan notlar için şu gelir paylaşım modelini uygular:</p>
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Platforma gelen reklam gelirinin <strong>%70&apos;i</strong> içerik üreticilere aktarılır</li>
           <li>Kazanç, geçerli görüntülenme ve indirme sayılarına göre hesaplanır</li>
@@ -73,14 +73,14 @@ export default function TermsPage() {
       <Section title="5. İçerik Moderasyonu">
         <p>
           Yüklenen her not admin incelemesinden geçer. Admin onayından önce not
-          yayınlanmaz. UniNot, herhangi bir içeriği gerekçe göstermeksizin
+          yayınlanmaz. NotKampüs, herhangi bir içeriği gerekçe göstermeksizin
           reddetme veya kaldırma hakkını saklı tutar.
         </p>
       </Section>
 
       <Section title="6. Sorumluluk Sınırı">
         <p>
-          UniNot, kullanıcılar tarafından yüklenen içeriklerin doğruluğundan,
+          NotKampüs, kullanıcılar tarafından yüklenen içeriklerin doğruluğundan,
           güncelliğinden veya telif hakkı durumundan sorumlu tutulamaz.
           İçerik sorumluluğu tamamen yükleyen kullanıcıya aittir.
         </p>
@@ -89,7 +89,7 @@ export default function TermsPage() {
       <Section title="7. Hesap Kapatma">
         <p>
           Hesabınızı kapatmak veya verilerinizin silinmesini talep etmek için
-          <a href="mailto:iletisim@uninot.com" className="text-blue-600 hover:underline ml-1">iletisim@uninot.com</a>
+          <a href="mailto:iletisim@notkampus.com" className="text-blue-600 hover:underline ml-1">iletisim@notkampus.com</a>
           adresine yazabilirsiniz. Hesap kapatma işlemi 30 gün içinde tamamlanır.
         </p>
       </Section>
@@ -103,7 +103,7 @@ export default function TermsPage() {
 
       <div className="mt-8 pt-6 border-t text-xs text-muted-foreground">
         Sorularınız için:{' '}
-        <a href="mailto:iletisim@uninot.com" className="text-blue-600 hover:underline">iletisim@uninot.com</a>
+        <a href="mailto:iletisim@notkampus.com" className="text-blue-600 hover:underline">iletisim@notkampus.com</a>
       </div>
     </div>
   )

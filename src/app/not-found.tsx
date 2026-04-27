@@ -15,7 +15,7 @@ export default function NotFound() {
         </Link>
       </div>
       <p className="mt-12 text-sm text-gray-400">
-        <span className="font-semibold text-blue-600">UniNot</span> — Üniversite Ders Notları
+        <span className="font-semibold text-blue-600">NotKampüs</span> — Üniversite Ders Notları
       </p>
     </div>
   )

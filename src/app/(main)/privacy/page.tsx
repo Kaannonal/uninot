@@ -1,4 +1,4 @@
-export const metadata = { title: 'Gizlilik Politikası — UniNot' }
+export const metadata = { title: 'Gizlilik Politikası — NotKampüs' }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -17,9 +17,9 @@ export default function PrivacyPage() {
 
       <Section title="1. Veri Sorumlusu">
         <p>
-          UniNot platformu kapsamında kişisel verileriniz, 6698 sayılı Kişisel Verilerin Korunması
-          Kanunu (KVKK) çerçevesinde <strong>UniNot</strong> tarafından işlenmektedir.
-          Sorularınız için: <a href="mailto:iletisim@uninot.com" className="text-blue-600 hover:underline">iletisim@uninot.com</a>
+          NotKampüs platformu kapsamında kişisel verileriniz, 6698 sayılı Kişisel Verilerin Korunması
+          Kanunu (KVKK) çerçevesinde <strong>NotKampüs</strong> tarafından işlenmektedir.
+          Sorularınız için: <a href="mailto:iletisim@notkampus.com" className="text-blue-600 hover:underline">iletisim@notkampus.com</a>
         </p>
       </Section>
 
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
         </ul>
         <p className="mt-2">
           Bu haklarınızı kullanmak için:
-          <a href="mailto:iletisim@uninot.com" className="text-blue-600 hover:underline ml-1">iletisim@uninot.com</a> adresine yazabilirsiniz.
+          <a href="mailto:iletisim@notkampus.com" className="text-blue-600 hover:underline ml-1">iletisim@notkampus.com</a> adresine yazabilirsiniz.
         </p>
       </Section>
 

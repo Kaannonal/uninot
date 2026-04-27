@@ -66,7 +66,7 @@ export default function Navbar() {
       {/* Ana bar */}
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold text-blue-600 shrink-0">
-          UniNot
+          NotKampüs
         </Link>
 
         {/* Masaüstü menü */}

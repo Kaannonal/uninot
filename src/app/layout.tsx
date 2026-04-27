@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "UniNot — Üniversite Ders Notları",
+  title: "NotKampüs — Üniversite Ders Notları",
   description: "Üniversite ders notlarını paylaş, başkalarının notlarına eriş ve kazanç elde et.",
 };
 

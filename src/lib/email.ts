@@ -3,9 +3,9 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Domain doğrulanana kadar Resend'in sandbox adresini kullan
-// Domain doğrulandıktan sonra 'noreply@uninot.com' ile değiştir
-const FROM = 'UniNot <onboarding@resend.dev>'
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://uninot.com'
+// Domain doğrulandıktan sonra 'noreply@notkampus.com' ile değiştir
+const FROM = 'NotKampüs <onboarding@resend.dev>'
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://notkampus.com'
 
 // ─── HTML template helper ──────────────────────────────────────────────────
 function wrap(title: string, body: string) {
@@ -19,7 +19,7 @@ function wrap(title: string, body: string) {
         <!-- Header -->
         <tr>
           <td style="background:#2563eb;padding:24px 32px">
-            <span style="color:#fff;font-size:22px;font-weight:700;letter-spacing:-0.5px">UniNot</span>
+            <span style="color:#fff;font-size:22px;font-weight:700;letter-spacing:-0.5px">NotKampüs</span>
           </td>
         </tr>
         <!-- Body -->
@@ -31,7 +31,7 @@ function wrap(title: string, body: string) {
         <!-- Footer -->
         <tr>
           <td style="padding:20px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280">
-            UniNot — Üniversite Ders Notları Platformu<br>
+            NotKampüs — Üniversite Ders Notları Platformu<br>
             Bu e-postayı almak istemiyorsan 
             <a href="${BASE_URL}/profile" style="color:#2563eb;text-decoration:none">profil sayfandan</a> bildirim tercihlerini düzenleyebilirsin.
           </td>
@@ -116,9 +116,9 @@ export async function sendNewComment(
 }
 
 export async function sendWelcome(to: string, fullName: string) {
-  const html = wrap('UniNot\'a Hoş Geldin', `
+  const html = wrap('NotKampüs\'a Hoş Geldin', `
     <h2 style="margin:0 0 16px;font-size:20px">Hoş geldin, ${fullName}! 🎓</h2>
-    <p>UniNot hesabın oluşturuldu. Artık ders notlarını paylaşabilir, diğer öğrencilerin notlarına erişebilir ve notlarından kazanç elde edebilirsin.</p>
+    <p>NotKampüs hesabın oluşturuldu. Artık ders notlarını paylaşabilir, diğer öğrencilerin notlarına erişebilir ve notlarından kazanç elde edebilirsin.</p>
     <p style="color:#6b7280;font-size:14px"><strong>Nasıl çalışır?</strong></p>
     <table style="width:100%;border-collapse:collapse">
       <tr>
@@ -140,7 +140,7 @@ export async function sendWelcome(to: string, fullName: string) {
   return resend.emails.send({
     from: FROM,
     to,
-    subject: 'UniNot\'a hoş geldin! 🎓',
+    subject: 'NotKampüs\'a hoş geldin! 🎓',
     html,
   })
 }
