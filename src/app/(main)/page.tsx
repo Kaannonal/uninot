@@ -134,9 +134,9 @@ export default async function HomePage({
       {/* Özellik kartları */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
         {[
-          { icon: '📚', title: 'Not Paylaş', desc: 'Ders notlarını PDF olarak yükle, onay sürecinden geçtikten sonra tüm öğrencilerle paylaşıma açılsın.' },
+          { icon: '📚', title: 'Not Paylaş', desc: 'Ders notlarını PDF olarak yükle, onay sürecinden geçtikten sonra tüm öğrencilerle paylaşıma açılsın. — Şu an sitedeki notlar test amaçlıdır, gerçek ders notları değildir.' },
           { icon: '🔍', title: 'Notlara Eriş', desc: 'Üniversitene, bölümüne ve dersine göre filtrele. İhtiyacın olan notları hızlıca bul.' },
-          { icon: '💰', title: 'Kazanç Elde Et', desc: 'Paylaştığın notlar görüntülendikçe ve indirildiğinde reklam gelirinden pay al.' },
+          { icon: '💰', title: 'Kazanç Elde Et', desc: 'Paylaştığın notlar görüntülendikçe ve indirildiğinde reklam gelirinden pay al. — Bu özellik şu an test aşamasındadır.' },
         ].map(f => (
           <div key={f.title} className="bg-white rounded-xl p-6 shadow-sm border">
             <div className="text-3xl mb-3">{f.icon}</div>
